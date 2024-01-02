@@ -7,9 +7,9 @@ plugins {
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 11
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
 
 allure {
     version = '2.16.1'
@@ -22,17 +22,18 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    testCompile
-}
-
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
     testImplementation 'mysql:mysql-connector-java:8.0.30'
+    // testImplementation 'org.postgresql:postgresql:42.2.23'
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'com.codeborne:selenide:6.17.2'
     testImplementation 'io.qameta.allure:allure-selenide:2.16.1'
+
+    implementation 'express:express:4.17.1'
+    implementation 'nodemon:nodemon:2.0.0'
+    implementation 'uuid:uuid:3.3.3'
 }
 
 test {
