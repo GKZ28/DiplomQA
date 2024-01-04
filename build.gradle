@@ -1,11 +1,14 @@
 plugins {
     id 'java'
-    id 'io.freefair.lombok' version "6.6.1"
+    id 'io.freefair.lombok' version "8.2.2"
     id 'io.qameta.allure' version '2.9.6'
 }
 
-group 'ru.netology'
-version '1.0-SNAPSHOT'
+group = 'ru.netology'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 11
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -30,12 +33,16 @@ dependencies {
     testImplementation 'commons-dbutils:commons-dbutils:1.7'
     testImplementation 'com.codeborne:selenide:6.17.2'
     testImplementation 'io.qameta.allure:allure-selenide:2.16.1'
-
-    implementation 'express:express:4.17.1'
-    implementation 'nodemon:nodemon:2.0.0'
-    implementation 'uuid:uuid:3.3.3'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    testImplementation 'org.projectlombok:lombok:1.18.26'
+    testCompileOnly ('org.projectlombok:lombok:1.18.26')
+    testImplementation("io.github.bonigarcia:webdrivermanager:5.5.3")
+    testAnnotationProcessor ('org.projectlombok:lombok:1.18.26')
+    testRuntimeOnly ('org.slf4j:slf4j-simple:2.0.3')
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
+
